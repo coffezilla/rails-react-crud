@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   delete 'users/:id', to: 'users#destroy'  
   
   # auth
-  post 'login', to: 'users#login'
-  post 'request-access-token', to: 'users#refresh_token'
+  post 'login', to: 'auth#login'
+  post 'request-access-token', to: 'auth#refresh_token'
 
   get "up" => "rails/health#show", as: :rails_health_check
 
