@@ -1,15 +1,26 @@
 class AuthController < ApplicationController
 
+    # Create a new user
+    def create
+        user = User.new(user_params)
+    
+        if user.save
+            render json: user, status: :created
+        else
+            render json: user.errors, status: :unprocessable_entity
+        end
+    end
+          
     # User login
     def login
         user = User.find_by(email: params[:email])
     
         if user&.authenticate(params[:password])
-          # Generate tokens
-          access_token = generate_access_token(user)
-          refresh_token = generate_refresh_token(user)
+            # Generate tokens
+            access_token = generate_access_token(user)
+            refresh_token = generate_refresh_token(user)
   
-          render json: { access_token: access_token, refresh_token: refresh_token, user: user }, status: :ok
+            render json: { access_token: access_token, refresh_token: refresh_token, user: user }, status: :ok
         else
             render json: { error: "Invalid email or password" }, status: :unauthorized
         end
@@ -31,9 +42,13 @@ class AuthController < ApplicationController
         end
     end
 
-
     private 
 
+    # Permit parameters without requiring user key
+    def user_params
+        params.permit(:name, :email, :password)
+    end
+        
     # Generate JWT access token
     def generate_access_token(user)
         # payload = { user_id: user.id, exp: 5.seconds.from_now.to_i }
