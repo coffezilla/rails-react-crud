@@ -7,7 +7,6 @@ import { LOCAL_STORAGE_AUTH } from "../../../helpers/constants";
 // Custom Hooks
 import useLocalStorage from "../../storage/useLocalStorage";
 import useLocalAuth from "../../storage/useLocalAuth";
-import useLocalMyData from "../../storage/useLocalUser";
 import {
 	getCheckTokenService,
 	postLoginService,
@@ -29,25 +28,33 @@ const useAuth = () => {
 
 	// check auth
 	const checkAuths = useCallback(() => {
-		const hasLocalStorageToken = localStorageAuth?.data?.auth?.token;
-		if (hasLocalStorageToken) {
-			getCheckTokenService({ email: localStorageAuth.data.auth.email })
+		const hasLocalStorageAccessToken = localStorageAuth?.data?.auth?.access_token;
+		if (hasLocalStorageAccessToken) {
+			getCheckTokenService({ refresh_token: localStorageAuth.data.auth.refresh_token })
 				.then((response) => {
 					if (response) {
 						if (response.status === 200) {
 							// update redux locally
 							updateUserData({
-								id: response.data.data.result.id,
-								name: response.data.data.result.name,
-								email: response.data.data.result.email,
+								id: response.data.user_id,
+								name: response.data.email,
+								email: response.data.email,
 							});
-
 							setIsAuthenticated(true);
+
+							// update access token localhost
+							updateAuthData({
+								...localStorageAuth.data.auth,
+								access_token: response.data.access_token,
+							});
 						}
 					}
 				})
-				.catch((error: AxiosError) => {
+				.catch((error: AxiosError<{ error: string }>) => {
 					if (error.response) {
+						if (error.response.status === 401) {
+							console.log("Mensagem", error.response.data.error);
+						}
 						logoutAuth();
 					}
 				})
@@ -70,27 +77,28 @@ const useAuth = () => {
 		await postLoginService(data)
 			.then((response) => {
 				responseAuth = {
-					data: response.data.data,
+					data: response.data,
 					status: response.status,
 				};
 
 				if (response.status === 200) {
 					// update local storage
 					updateAuthData({
-						token: response.data.data.result.token,
-						email: response.data.data.result.email,
-						timestamp: response.data.data.result.timestamp,
+						access_token: response.data.access_token,
+						refresh_token: response.data.refresh_token,
+						email: response.data.user.email,
+						timestamp: response.data.user.updated_at,
 					});
 				}
 			})
-			.catch((error: AxiosError) => {
+			.catch((error: AxiosError<{ error: string }>) => {
 				logoutAuth();
 				if (error.response) {
 					responseAuth = {
 						...responseAuth,
-						status: error.status,
+						status: error.response.status,
 						data: {
-							message: error.message,
+							message: error.response.data.error,
 						},
 					};
 				}
@@ -112,17 +120,17 @@ const useAuth = () => {
 		await storeUserService(data)
 			.then((response) => {
 				responseAuth = {
-					data: response.data.data,
+					data: response.data,
 					status: response.status,
 				};
 			})
-			.catch((error: AxiosError) => {
+			.catch((error: AxiosError<{ error: string }>) => {
 				if (error.response) {
 					responseAuth = {
 						...responseAuth,
-						status: error.status,
+						status: error.response.status,
 						data: {
-							message: error.message,
+							message: "E-mail already registered or another problem",
 						},
 					};
 				}

@@ -49,8 +49,9 @@ const FormRegister = () => {
 		e.preventDefault();
 
 		registerAuth({ name: state.name, email: state.email, password: state.password }).then((response) => {
+			console.log("break", response);
 			if (response.status === 201) {
-				showToast({ message: response.data.message, type: "success" });
+				showToast({ message: "User Created", type: "success" });
 				window.location.href = "/login";
 			}
 

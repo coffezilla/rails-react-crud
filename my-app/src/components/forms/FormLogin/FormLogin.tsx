@@ -48,7 +48,7 @@ const FormLogin = () => {
 
 		loginAuth({ email: state.email, password: state.password }).then((response) => {
 			if (response.status === 200) {
-				showToast({ message: response.data.message, type: "success" });
+				showToast({ message: "Logado", type: "success" });
 				window.location.href = "/dashboard";
 			}
 

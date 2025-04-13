@@ -43,7 +43,8 @@ const useLocalAuth = () => {
 		setLocalStorage(LOCAL_STORAGE_AUTH, {
 			auth: {
 				...localStorageData.auth,
-				token: option.token,
+				access_token: option.access_token,
+				refresh_token: option.refresh_token,
 				email: option.email,
 				timestamp: option.timestamp,
 			},
