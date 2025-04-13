@@ -1,4 +1,5 @@
-class UsersController < ApplicationController
+module Api
+  class UsersController < ApplicationController
     # Skip CSRF for API
     # skip_before_action :verify_authenticity_token, only: [:create, :login]
     before_action :authenticate_user!, only: [:index, :update, :destroy]
@@ -43,3 +44,4 @@ class UsersController < ApplicationController
     end
         
   end
+end

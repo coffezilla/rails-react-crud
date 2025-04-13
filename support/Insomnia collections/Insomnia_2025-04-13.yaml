@@ -9,15 +9,15 @@ collection:
     meta:
       id: fld_19a1d9263139456f86614a25b449637c
       created: 1744556704857
-      modified: 1744563084431
+      modified: 1744566018836
       sortKey: -1744556704857
     children:
-      - url: "{{ _.base_path }}/login"
+      - url: "{{ _.base_path }}/api/login"
         name: /login
         meta:
           id: req_928aee1d0b524f91b3a0e97bd5929017
           created: 1744556708208
-          modified: 1744563077310
+          modified: 1744565775766
           isPrivate: false
           sortKey: -1744556708208
         method: POST
@@ -53,12 +53,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{ _.base_path }}/register"
+      - url: "{{ _.base_path }}/api/register"
         name: /register
         meta:
           id: req_cdc13a52db9c4f9db1578a8e8b1e5ee8
           created: 1744556729855
-          modified: 1744563009504
+          modified: 1744565868325
           isPrivate: false
           sortKey: -1744556695421.5
         method: POST
@@ -87,12 +87,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{ _.base_path }}/request-access-token"
+      - url: "{{ _.base_path }}/api/request-access-token"
         name: /request-access-token
         meta:
           id: req_62619bf7dc4045f89d54b317494ecca2
           created: 1744556777007
-          modified: 1744562960500
+          modified: 1744566011978
           isPrivate: false
           sortKey: -1744556684233.3125
         method: POST
@@ -131,12 +131,12 @@ collection:
       modified: 1744560859352
       sortKey: -1744560859352
     children:
-      - url: "{{ _.base_path }}/me"
+      - url: "{{ _.base_path }}/api/me"
         name: /me
         meta:
           id: req_4c6c4fef02c64985ad432ea9d49599d5
           created: 1744560867142
-          modified: 1744562202281
+          modified: 1744566022586
           isPrivate: false
           sortKey: -1744561674293
         method: GET
@@ -154,12 +154,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{ _.base_path }}/me"
+      - url: "{{ _.base_path }}/api/me"
         name: /me
         meta:
           id: req_c52bfd8667de4cfb9434228090695807
           created: 1744560891849
-          modified: 1744562197975
+          modified: 1744566026249
           isPrivate: false
           sortKey: -1744561674343
         method: PATCH
@@ -185,12 +185,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{ _.base_path }}/me"
+      - url: "{{ _.base_path }}/api/me"
         name: /me
         meta:
           id: req_a2e7b36767e54451b0963da1de37b9b1
           created: 1744560903593
-          modified: 1744563066552
+          modified: 1744566029152
           isPrivate: false
           sortKey: -1744561674393
         method: DELETE
@@ -217,26 +217,26 @@ cookieJar:
   meta:
     id: jar_40e74f88e7a415a29683aa7eaaac07c553235393
     created: 1744556670233
-    modified: 1744563084425
+    modified: 1744566018834
 environments:
   name: Base Environment
   meta:
     id: env_40e74f88e7a415a29683aa7eaaac07c553235393
     created: 1744556670231
-    modified: 1744563084430
+    modified: 1744566018835
     isPrivate: false
   subEnvironments:
     - name: localhost
       meta:
         id: env_5d7673f3947d4f71ba9b124f044bfb16
         created: 1744562042611
-        modified: 1744563084429
+        modified: 1744566018835
         isPrivate: true
         sortKey: 1744562042611
       data:
         base_path: http://localhost:3000
-        refresh_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOWJiNzQ0N2QtYTkzZi00OGFjLWJjODAtMjExMGQwZjNjYTAzIiwiZXhwIjoxNzQ0NjQ5NDc3fQ.FAVgMHQ1Fq_gWnKTfI6AWyPxj_sB73K1_f3WAa149pU
-        token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOWJiNzQ0N2QtYTkzZi00OGFjLWJjODAtMjExMGQwZjNjYTAzIiwiZXhwIjoxNzQ0NTY2Njc3fQ.pbzH9CDrLlHVlDqXj5COllcg_swnVpxRuIopGEnGdDw
+        refresh_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOWJiNzQ0N2QtYTkzZi00OGFjLWJjODAtMjExMGQwZjNjYTAzIiwiZXhwIjoxNzQ0NjUyNDE2fQ.Y3vh1xpcde6xManCFp8YZ_m7TdLEhKTpzu2mvE_hhNg
+        token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOWJiNzQ0N2QtYTkzZi00OGFjLWJjODAtMjExMGQwZjNjYTAzIiwiZXhwIjoxNzQ0NTY5NjE2fQ.JxdFP2K0HwHwkisOqXeO8AHHs4d484rDjm59xDRlOSk
         path_base: "123123123123"
       color: "#d60000"
     - name: online
