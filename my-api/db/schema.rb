@@ -11,4 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_04_01_005754) do
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'uuid' for column 'id'
+
 end

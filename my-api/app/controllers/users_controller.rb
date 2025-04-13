@@ -69,7 +69,7 @@ class UsersController < ApplicationController
             # Generate a new access token
             new_access_token = generate_access_token(user)
         
-            render json: { access_token: new_access_token }, status: :ok
+            render json: { access_token: new_access_token, user_id: user.id, email: user.email }, status: :ok
         rescue JWT::DecodeError
             render json: { error: "Invalid refresh token" }, status: :unauthorized
         end
