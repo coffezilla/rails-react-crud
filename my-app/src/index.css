@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+@tailwind base;
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+	margin: 20px;
+	padding: 10px;
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0);
+}
+.scrollable::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.2);
+	border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 0, 0, 0.3);
+}
+@tailwind components;
+@tailwind utilities;
+
+/* CUSTOM TEXT */
+.custom-text-content p {
+	@apply pb-3 leading-7;
+}
+
+/* SWEET ALERT */
+.swal2-popup {
+	@apply bg-white rounded-md overflow-hidden;
+}
+
+.swal2-popup .swal2-actions {
+	@apply bg-white;
+}
+
+.swal2-popup .swal2-title {
+	@apply bg-white text-2xl font-bold pt-8 pb-2;
+}
+
+.swal2-actions .swal2-confirm {
+	@apply text-base bg-green-500 rounded-md;
+}
+
+.swal2-actions .swal2-cancel {
+	@apply text-base bg-gray-100 rounded-md text-gray-800;
+}
+
+.swal2-html-container {
+	font-size: 0.1em !important;
+	line-height: 0.2em !important;
+}
+@keyframes glow {
+	0% {
+		box-shadow: 0 0 1px rgba(0, 150, 255, 0.8);
+	}
+	50% {
+		box-shadow: 0 0 10px rgba(0, 150, 255, 1);
+	}
+	100% {
+		box-shadow: 0 0 1px rgba(0, 150, 255, 0.8);
+	}
+}
+
+.glow-effect {
+	animation: glow 2s infinite alternate;
+}
